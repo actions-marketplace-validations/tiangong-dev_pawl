@@ -47,6 +47,12 @@ jobs:
       # byte-compare — docs that print what pawl never printed fail here.
       - name: doc output reproduction check
         run: node scripts/demo-repro-check.mjs
+      # The READMEs tell people to pin `pawl@vX.Y.Z` and `@pawl-tools/cli@X.Y.Z`.
+      # A release bumps npm/cli/package.json and those lines get left behind, so
+      # the copy-paste installs an old version and nothing says so. This fails
+      # the release PR instead, while the version bump is still in front of you.
+      - name: doc version pin check
+        run: node scripts/docs-version-check.mjs
       # demo/scripts/ scores the agent evaluations that justify `agent`, and
       # both scripts have silently mis-scored a real run — one of them because a
       # new pawl subcommand was not in its command list. Adding a subcommand
@@ -85,7 +91,7 @@ jobs:
           PAWL_DRY_RUN=1 node npm/publish.js
       - name: Comment quality gate + release-path summary on PR
         if: always() && github.event_name == 'pull_request'
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         env:
           RELEASE_OUTCOME: ${{ steps.releasepath.outcome }}
         with:
