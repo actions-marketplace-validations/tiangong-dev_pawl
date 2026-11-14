@@ -40,7 +40,7 @@
     "@pawl-tools/cli-darwin-x64": "0.8.2",
     "@pawl-tools/cli-linux-arm64": "0.8.2",
     "@pawl-tools/cli-linux-x64": "0.8.2",
-    "@pawl-tools/cli-win32-arm64": "0.8.2",
+    "@pawl-tools/cli-win32-arm64": "0.8.3",
     "@pawl-tools/cli-win32-x64": "0.8.2"
   }
 }
